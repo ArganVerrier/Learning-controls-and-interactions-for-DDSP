@@ -3,6 +3,9 @@
 Created on Fri Dec 18 19:27:06 2020
 
 @author: argan
+
+Un essai de plot de l'espace latent. Pour chaque image on récupère le label et les moyennes des données encodées, puis on plot.
+
 """
 import matplotlib.pyplot as plt
 plt.style.use('seabornCustom')
@@ -47,7 +50,7 @@ for ind in range(Nplot):
     mu=z_param[0].detach()
     listRes[label][0].append(mu[0].item())
     listRes[label][1].append(mu[1].item())
- 
+
 fig=plt.figure()
 for ind in range(len(listRes)):
     plt.plot(listRes[ind][0], listRes[ind][1], "*", label=str(ind))
