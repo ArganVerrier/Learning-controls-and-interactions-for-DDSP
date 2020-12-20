@@ -27,5 +27,4 @@ Dans le doc, BatchNorm2d prend la taille de channel output du layer d'avant et p
 
 On peut ajouter la normalization aux layer convolution et linéraire (mais pas ceux d'output pour mu et sigma ! mais pas celui d'output pour la reconstruction !)
 
-L'idée, c'est de normaliser les activations cachées, les output en général tu as juste à choisir une activation qui correspond au range de ce que tu veux générer et une loss qui correspond
-
+L'idée, c'est de normaliser les activations cachées, les output en général on a just à choisir une activation qui correspond au range de ce que on veut générer et une loss qui correspond.
