@@ -20,6 +20,9 @@ import seaborn as sns
 
 import multiprocessing
 
+device=torch.cuda.current_device()
+print("Current device : {}".format(torch.cuda.get_device_name(device)))
+
 class AE(nn.Module):
     def __init__(self, encoder, decoder, encoding_dim):
         super(AE, self).__init__()
@@ -71,10 +74,14 @@ class VAE(AE):
         n_batch=x.shape[0]
         mu, sigma =z_params
         #print(mu.shape)
-
+        # print(mu.device)
+        # print(sigma.device)
         #reparamétrisation
         q=distrib.Normal(torch.zeros(mu.shape), torch.ones(sigma.shape))
-        z=sigma*q.sample() + mu
+        sampled=q.sample()
+        sampled=sampled.cuda(device)
+        # print(sampled.device)
+        z=sigma*sampled + mu
         #compute KL divergence
         kl_div=0.5* torch.sum(1+sigma -torch.pow(mu, 2)- torch.exp(sigma))
         kl_div=kl_div/n_batch

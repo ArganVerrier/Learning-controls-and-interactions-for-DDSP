@@ -19,6 +19,8 @@ import multiprocessing
 
 
 if __name__ == "__main__":
+    device=torch.cuda.current_device()
+    print("Current device : {}".format(torch.cuda.get_device_name(device)))
     #%Train/valid data set
     dataset_dir = 'D:\Documents\Cours\M2\projet-ml\Learning-controls-and-interactions-for-DDSP\data'
 
@@ -39,9 +41,10 @@ if __name__ == "__main__":
     # Prepare
     num_threads = 4     # Loading the dataset is using 4 CPU threads
     batch_size  = 128   # Using minibatches of 128 samples
-    train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size, num_workers=num_threads)
-    valid_loader = torch.utils.data.DataLoader(dataset=valid_dataset, batch_size=batch_size, shuffle=False, num_workers=num_threads)
-    torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size,shuffle=False,num_workers=num_threads)
+    
+    train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size, num_workers=num_threads, pin_memory=True)
+    valid_loader = torch.utils.data.DataLoader(dataset=valid_dataset, batch_size=batch_size, shuffle=False, num_workers=num_threads, pin_memory=True)
+    #torch.utils.data.DataLoader(dataset=test_dataset,batch_size=batch_size,shuffle=False,num_workers=num_threads)
 
     #% training
     imRef, labRef=next(iter(train_loader))
@@ -55,21 +58,23 @@ if __name__ == "__main__":
 
     encoder, decoder=construct_encoder_decoder_modules(nIn, n_latent=2, n_hidden=nHidden, n_classes=nClass)
 
-    model=VAE(encoder, decoder, nHidden, 2)
+    model=VAE(encoder.cuda(device), decoder.cuda(device), nHidden, 2)
+    model=model.cuda(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
     losses=np.zeros((Nepoch,))
 
 
-#%% Entrainement
-
+    print("Training, Nepochs = {} ".format(Nepoch))
 
     for ind in range(Nepoch):
         print(ind)
         loss=0.
         for i,(img, lab) in enumerate(train_loader):
+            img=img.to(device)
             lossStep, x_=train_step(model, img, optimizer, batch_size)
             loss+=lossStep
+        print(torch.cuda.memory_allocated(0)/1024)
         losses[ind]=loss.mean().item()
 
 #%%
