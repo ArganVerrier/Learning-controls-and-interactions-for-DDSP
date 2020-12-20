@@ -22,6 +22,7 @@ En règle général on peut faire les couches cachées comme layer + normalisati
 
 Ex :
 self.conv12 = nn.Sequential(nn.Conv2d(nin, 64, kernel_size=4, stride=2, padding=1),nn.BatchNorm2d(64))
+z = F.relu(self.conv12(z))
 
 Dans le doc, BatchNorm2d prend la taille de channel output du layer d'avant et pour les Linear, on peut ajouter BatchNorm1d, on peut mettre dans un Sequential là car les normalizations ne changent pas la dimension ! donc les print que tu as fais pour t'assurer de la taille de sortie de chaque couche (c'est bien ça !) restent valables
 
