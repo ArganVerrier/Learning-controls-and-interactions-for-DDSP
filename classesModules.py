@@ -82,7 +82,7 @@ class VAE(AE):
     
     
 class encoder(nn.Module):
-    def __init__(self, nin, n_latent = 16, n_hidden = 512, n_classes = 1):
+    def __init__(self, nin, n_latent = 2, n_hidden = 512, n_classes = 1):
         super(encoder, self).__init__()
         self.nin=nin
         self.n_latent=n_latent
