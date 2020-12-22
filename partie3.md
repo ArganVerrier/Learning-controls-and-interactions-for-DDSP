@@ -5,7 +5,7 @@
 
 **préparation des données et extraction des enveloppes de descripteurs (f0,loudness)**
 
-élève(s):
+élève(s): Gabriel - Argan
 
 
 * SOL ordinario == notes individuelles (+ labels)
