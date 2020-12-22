@@ -1,5 +1,7 @@
 
-## divisez les taches et faites des groupes de travail
+## VAE for fixed-length samples
+
+*divisez les taches et faites des groupes de travail*
 
 **préparation des données et extraction des enveloppes de descripteurs (f0,loudness)**
 
