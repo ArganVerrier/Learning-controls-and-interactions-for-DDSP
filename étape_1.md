@@ -16,3 +16,5 @@ tester un modèle convolution + linéaire
 **visualisation et évaluation**
 
 faire différents codes qui permettent de visualiser les paires d'enveloppes, la modulation autour du pitch de la note etc.
+
+faire le code de synthèse avec le DDSP pré-entrainé
