@@ -1,5 +1,7 @@
 # Learning-controls-and-interactions-for-DDSP
 
+## 1. VAE MNIST/FashionMNIST
+
 We trained 2 VAEs on MNIST and FashionMNIST Datasets. They are respectively collection of digits and clothes (t-shirts, sneekers, Sweetshirts, etc..). 
 There are 2 Notebooks, one for each Datasets. We tested Linear architecture, and then saw that Convolution architecture is even more efficient for Images Problems. 
 
