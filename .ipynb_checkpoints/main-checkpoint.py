@@ -119,14 +119,14 @@ if __name__ == "__main__":
     #     return nll, bpd
 
 
-# x = np.linspace(-3, 3, 8)
-# y = np.linspace(-3, 3, 8)
-# fig = plt.figure(figsize=(10, 8))
-# for i in range(8):
-#     for j in range(8):
-#         plt.subplot(8, 8, (i * 8) + j + 1)
-#         final_tensor = torch.zeros(2)
-#         final_tensor[0] = x[i]
-#         final_tensor[1] = y[j]
-#         plt.imshow(model.decode(final_tensor).detach().reshape(28, 28), cmap='gray')
-#         plt.axis('off')
+    # x = np.linspace(-3, 3, 8)
+    # y = np.linspace(-3, 3, 8)
+    # fig = plt.figure(figsize=(10, 8))
+    # for i in range(8):
+    #     for j in range(8):
+    #         plt.subplot(8, 8, (i * 8) + j + 1)
+    #         final_tensor = torch.zeros(2)
+    #         final_tensor[0] = x[i]
+    #         final_tensor[1] = y[j]
+    #         plt.imshow(model.decode(final_tensor).detach().reshape(28, 28), cmap='gray')
+    #         plt.axis('off')

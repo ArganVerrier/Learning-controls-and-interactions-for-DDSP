@@ -49,7 +49,7 @@ class VAE(AE):
 
     def encode(self, x):
 
-        x=self.encoder(x)
+        x=self.encoder.forward(x)
         mu=f.relu(self.linMu(x))
         sigma=f.softplus(self.linSigma(x))
         # print("shape mu="+str(mu.shape))
@@ -58,7 +58,7 @@ class VAE(AE):
         return mu, sigma
 
     def decode(self, z):
-        return self.decoder(z)
+        return self.decoder.forward(z)
 
     def forward(self, x):
         # Encode the inputs
@@ -127,7 +127,7 @@ class decoder(nn.Module):
         self.lin3=nn.Linear(n_hidden, nin)
 
     def forward(self, x):
-        x=x.view((-1, self.n_latent))
+        x=x.view((-1, self.n_latent)).cuda(device)
         a1=f.relu(self.lin1(x))
         a2=f.relu(self.lin2(a1))
         a3=f.relu(self.lin3(a2))
@@ -162,6 +162,6 @@ def train_step(model, x, optimizer, batch_size):
     return loss, x_
 
 def predIm(x, y, model):
-    coord=torch.tensor([x, y])
+    coord=torch.tensor([x, y]).cuda()
     pred=model.decode(coord).detach().reshape((28,28))
     return pred
