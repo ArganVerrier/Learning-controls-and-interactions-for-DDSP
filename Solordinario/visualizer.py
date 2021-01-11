@@ -22,7 +22,7 @@ class Visualizer:
         fig.subplots_adjust(hspace = .5, wspace=.1)
         axs = axs.ravel()
         for j in range(number_images):
-            y = self.list_images[j][0]
+            y = self.list_images[j][1]
             axs[j].plot(y,label="pitch")
             axs[j].set_title("Pitch of sample n°{}".format(a+j))
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.2f}"))
@@ -39,17 +39,17 @@ class Visualizer:
         fig.subplots_adjust(hspace = .5, wspace=.1)
         axs = axs.ravel()
         for j in range(number_images):
-            y = self.list_images[j][1]
+            y = self.list_images[j][0]
             axs[j].plot(y,label="loudness")
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.2f}"))
             axs[j].set_title("Loudness of sample n°{}".format(a+j))
             axs[j].legend()    
 
-    def reconstruction(self,ddsp,pitch_max = 1, loudness_max = 1):
+    def reconstruction(self,ddsp,loudness_max = 1,pitch_max = 1):
         self.list_sounds = []
         for image in self.list_images:
-            pitch = torch.from_numpy(image[0]*pitch_max).float().reshape(1, -1, 1)
-            loudness = torch.from_numpy(image[1]*loudness_max).float().reshape(1, -1, 1)
+            pitch = torch.from_numpy(image[1]*pitch_max).float().reshape(1, -1, 1)
+            loudness = torch.from_numpy(image[0]*loudness_max).float().reshape(1, -1, 1)
             self.list_sounds.append(ddsp(pitch, loudness))
 
 
