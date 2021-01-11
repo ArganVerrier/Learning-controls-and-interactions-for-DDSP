@@ -31,3 +31,7 @@ On peut ajouter la normalization aux layer convolution et linéraire (mais pas c
 L'idée, c'est de normaliser les activations cachées, les output en général on a just à choisir une activation qui correspond au range de ce que on veut générer et une loss qui correspond.
 
 #5 Pour la loss, il est plus interessant d'utiliser "reduction='mean'", ça nous permettra de comparer différents différentes évolution de loss, pour différents jeu de données
+
+
+Tuto pour choisir les hyperparamètres: 
+https://towardsdatascience.com/guide-to-choosing-hyperparameters-for-your-neural-networks-38244e87dafe
