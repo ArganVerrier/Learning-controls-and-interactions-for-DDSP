@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import sounddevice as sd
 import numpy as np
 import torch
 
@@ -50,7 +51,7 @@ class Visualizer:
         for image in self.list_images:
             pitch = torch.from_numpy(image[1]*pitch_max).float().reshape(1, -1, 1)
             loudness = torch.from_numpy(image[0]*loudness_max).float().reshape(1, -1, 1)
-            self.list_sounds.append(ddsp(pitch, loudness))
+            self.list_sounds.append(ddsp(pitch, loudness).squeeze().detach().numpy())
 
 
     def show_sound(self, indexes=None, Fs = 16000):
@@ -64,7 +65,7 @@ class Visualizer:
         fig.subplots_adjust(hspace = .5, wspace=.5)
         axs = axs.ravel()
         for j in range(number_sounds):
-            y = self.list_sounds[j].squeeze().detach().numpy()
+            y = self.list_sounds[j]
             x = np.array([i/Fs for i in range(len(y))])
             axs[j].plot(x,y, label="s(t)")
             axs[j].set_title("Soundwave of sample n°{}".format(a+j))
@@ -88,9 +89,13 @@ class Visualizer:
         axs = axs.ravel()
         for j in range(number_sounds):
             sound = self.list_sounds[j]
-            axs[j].specgram(sound.squeeze().detach().numpy(), NFFT=Nfft, Fs=Fs, noverlap=Nfft/2)
+            axs[j].specgram(sound, NFFT=Nfft, Fs=Fs, noverlap=Nfft/2)
             axs[j].set_title("Spectrogram of sample n°{}".format(a+j))
             axs[j].set_xlabel("time (s)")
             axs[j].set_ylabel("freq (Hz)")
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.0f}"))
             axs[j].legend()    
+
+    def listen(self, index=0):
+        sig = self.list_sounds[index]
+        sd.play(sig*0.5/np.max(sig), 16000)
