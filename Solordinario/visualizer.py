@@ -6,10 +6,15 @@ import torch
 
 
 class Visualizer:
-    def __init__(self, list_images):
+    def __init__(self, list_images, list_sources = None ):
         super().__init__()
         self.list_images = list_images
+        self.list_sources = list_sources
         self.list_sounds = None
+
+        self.compare = self.list_sources!=None
+        if self.compare and len(self.list_sources)<len(self.list_images):
+            raise Exception("The source list must be the same length as image list")
 
 
     def show_pitch(self,indexes=None): # index = tuple (a,b)
@@ -24,7 +29,10 @@ class Visualizer:
         axs = axs.ravel()
         for j in range(number_images):
             y = self.list_images[j][1]
-            axs[j].plot(y,label="pitch")
+            if self.compare:
+                ys = self.list_sources[j][1]
+                axs[j].plot(ys,label="source")
+            axs[j].plot(y,label="VAE")
             axs[j].set_title("Pitch of sample n°{}".format(a+j))
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.2f}"))
             axs[j].legend()
@@ -41,7 +49,10 @@ class Visualizer:
         axs = axs.ravel()
         for j in range(number_images):
             y = self.list_images[j][0]
-            axs[j].plot(y,label="loudness")
+            if self.compare:
+                ys = self.list_sources[j][0]
+                axs[j].plot(ys,label="source") 
+            axs[j].plot(y,label="VAE")           
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.2f}"))
             axs[j].set_title("Loudness of sample n°{}".format(a+j))
             axs[j].legend()    
