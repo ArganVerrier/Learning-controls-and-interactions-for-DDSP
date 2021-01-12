@@ -35,3 +35,7 @@ L'idée, c'est de normaliser les activations cachées, les output en général o
 
 Tuto pour choisir les hyperparamètres: 
 https://towardsdatascience.com/guide-to-choosing-hyperparameters-for-your-neural-networks-38244e87dafe
+
+
+About kernel_size: 
+https://towardsdatascience.com/deciding-optimal-filter-size-for-cnns-d6f7b56f9363
