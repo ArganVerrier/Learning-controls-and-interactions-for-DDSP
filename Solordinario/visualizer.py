@@ -25,7 +25,7 @@ class Visualizer:
             a,b = indexes
         number_images = b-a+1
         fig, axs = plt.subplots(int(np.ceil(number_images/3)),3, figsize=(20, 4*int(np.ceil(number_images/3))), facecolor='w', edgecolor='k')
-        fig.subplots_adjust(hspace = .5, wspace=.1)
+        fig.subplots_adjust(hspace = .5, wspace=.2)
         axs = axs.ravel()
         for j in range(number_images):
             y = self.list_images[j][1]
