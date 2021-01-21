@@ -16,7 +16,7 @@ In this part, we used the dataset 'Solordinario' witch is a library made by Irca
 
 We used this dataset to create a dictionnary of pitch and loudness envelopes at a fram rate oh 250Hz. With this envelopes, we have trained a VAE to encode in a latent space of 64 dimensions and be able to reconstruct those envelopes with a decoder. Using a pretrained DDSP, we are finally able to reconstruct audio file from the envelopes.
 
-![Screenshot](Schema.png)
+![Screenshot](Schema.PNG)
 
 By interpolation in the latent space, it is then possible to create new audio files for audio synthesis. 
 
