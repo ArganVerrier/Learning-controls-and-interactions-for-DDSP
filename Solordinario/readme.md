@@ -1,6 +1,6 @@
 # Description of the files
 
-### Solordinario_PrepareDataSet.ipynb
+#### Solordinario_PrepareDataSet.ipynb
 Notebook to prepare the dataset : 
     - Get only the 3 first secondes of all files to homogenize the length of all file
     - Compute loudness and pitch envelopes with function in the file "descriptors.py"
@@ -17,9 +17,9 @@ Organisation of "data_dict.npy" :
 Notebook to trained the model to encode envelopes in a latent space of 64 dimensions and reconstruct them with a decodeur. The model trained is save in the file "vaeMODELtrainedOK".
 To visualise and listen the reconstructions, we have create a class in file "visualizer.py.". 
 
-### Visualizer_MANUAL.ipynb
+#### Visualizer_MANUAL.ipynb
 Notebook that explained and show how the visualizer.py works.
 
-### VAE_SOlordinario_ExploreLatentSpace.ipynb
+#### VAE_Solordinario_ExploreLatentSpace.ipynb
 Notebook used to compute new envelopes by interpolation in the latent space. 
 We have also tried to understand how the VAE organised the latent space. The visualisation is in 2 dimensions. The dimension reduction is made using PCA and TSNE.
