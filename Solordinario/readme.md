@@ -6,12 +6,18 @@ Notebook to prepare the dataset :
     - Compute loudness and pitch envelopes with function in the file "descriptors.py"
     - Store all enveloppes in a dictionary "data_dict.npy"
     
-Organisation of "data_dict.npy" :\\
-    - dict_dict['env'] => array (2*750) with loudness and pitch envelopes \\
-    - dict_dict['file_name'] => Original file name \\
-    - dict_dict['vel'] => Velocity ('ff' = forte ; 'mf' = mezzo forte ; 'pp' = piano) \\
-    - dict_dict['pitch'] => Pitch ('A5', 'B#6', ...) \\ 
-    - dict_dict['corde'] => String Played ('1c', '2c', '3c', '4c') \\
+Organisation of "data_dict.npy" :
+
+    - dict_dict['env'] => array (2*750) with loudness and pitch envelopes 
+    
+    - dict_dict['file_name'] => Original file name 
+    
+    - dict_dict['vel'] => Velocity ('ff' = forte ; 'mf' = mezzo forte ; 'pp' = piano) 
+    
+    - dict_dict['pitch'] => Pitch ('A5', 'B#6', ...)  
+    
+    - dict_dict['corde'] => String Played ('1c', '2c', '3c', '4c') 
+    
     
 #### VAE_Solordinario_VF.ipynb
 Notebook to trained the model to encode envelopes in a latent space of 64 dimensions and reconstruct them with a decodeur. The model trained is save in the file "vaeMODELtrainedOK".
