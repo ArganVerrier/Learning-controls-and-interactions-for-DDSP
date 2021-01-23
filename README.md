@@ -1,3 +1,5 @@
+Visualize and Listen to some results here : https://github.com/jeremybboy/DDSP
+
 # Learning-controls-and-interactions-for-DDSP
 
 ## 1. VAE MNIST/FashionMNIST
