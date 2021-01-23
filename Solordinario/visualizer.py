@@ -25,7 +25,7 @@ class Visualizer:
             a,b = indexes
         number_images = b-a+1
         fig, axs = plt.subplots(int(np.ceil(number_images/3)),3, figsize=(20, 4*int(np.ceil(number_images/3))), facecolor='w', edgecolor='k')
-        fig.subplots_adjust(hspace = .5, wspace=.1)
+        fig.subplots_adjust(hspace = .5, wspace=.2)
         axs = axs.ravel()
         for j in range(number_images):
             y = self.list_images[j][1]
@@ -36,6 +36,7 @@ class Visualizer:
             axs[j].set_title("Pitch of sample n°{}".format(a+j))
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.2f}"))
             axs[j].legend()
+        return fig
 
     def show_loudness(self,indexes=None): # index = tuple (a,b)
         """Plot Loudness of images included in indexes [a;b]"""
@@ -56,7 +57,8 @@ class Visualizer:
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.2f}"))
             axs[j].set_title("Loudness of sample n°{}".format(a+j))
             axs[j].legend()    
-
+        return fig
+    
     def reconstruction(self,ddsp,loudness_max = 1,pitch_max = 1):
         self.list_sounds = []
         for image in self.list_images:
@@ -84,7 +86,7 @@ class Visualizer:
             axs[j].set_ylabel("A")
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.2f}"))
             axs[j].legend()    
-
+        return fig
 
 
     def show_spectrogramm(self, indexes = None, Nfft = 256, Fs = 16000):
@@ -106,7 +108,8 @@ class Visualizer:
             axs[j].set_ylabel("freq (Hz)")
             axs[j].yaxis.set_major_formatter(ticker.StrMethodFormatter("{x:.0f}"))
             axs[j].legend()    
-
+        return fig
+    
     def listen(self, index=0):
         sig = self.list_sounds[index]
         sd.play(sig*0.5/np.max(sig), 16000)
