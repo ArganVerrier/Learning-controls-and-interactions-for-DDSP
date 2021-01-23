@@ -20,7 +20,7 @@ Organisation of "data_dict.npy" :
     
     
 #### VAE_Solordinario_VF.ipynb
-Notebook to trained the model to encode envelopes in a latent space of 64 dimensions and reconstruct them with a decodeur. The model trained is save in the file "vaeMODELtrainedOK".
+Notebook to trained the model to encode envelopes in a latent space of 64 dimensions and reconstruct them with a decodeur. The model trained is save in the file "vae_model_trained".
 To visualise and listen the reconstructions, we have create a class in file "visualizer.py.". 
 
 #### Visualizer_MANUAL.ipynb
