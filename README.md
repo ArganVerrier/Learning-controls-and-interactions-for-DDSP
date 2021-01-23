@@ -1,4 +1,4 @@
-Visualize and Listen to some results here : https://github.com/jeremybboy/DDSP
+Visualize and Listen to some results here : https://jeremybboy.github.io/DDSP/
 
 # Learning-controls-and-interactions-for-DDSP
 
