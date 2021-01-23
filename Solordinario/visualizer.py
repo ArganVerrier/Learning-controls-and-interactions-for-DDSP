@@ -113,3 +113,4 @@ class Visualizer:
     def listen(self, index=0):
         sig = self.list_sounds[index]
         sd.play(sig*0.5/np.max(sig), 16000)
+        return sig*0.5/np.max(sig), 16000
