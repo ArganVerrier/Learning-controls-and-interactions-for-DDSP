@@ -13,7 +13,7 @@ sigma = F.softplus(self.fc2(encoder)) -> Faux
 sigma = self.fc2(encoder) -> Correct
 
 
-#3 Si les résultats s'amériorent pas, on peut tracer aussi la courbe des loss au cours de l'entrainement (eg utilises tensorboard, ça marche avec pytorch). Si on voit que la loss de kl_div descend très bas mais que la loss de reconstruction non c'est que la kl_div est "trop forte", on peut ajouter un parametre "beta_vae" (un float) qui ajuste cette force comme :
+#3 Si les résultats s'améliorent pas, on peut tracer aussi la courbe des loss au cours de l'entrainement (eg utilises tensorboard, ça marche avec pytorch). Si on voit que la loss de kl_div descend très bas mais que la loss de reconstruction non c'est que la kl_div est "trop forte", on peut ajouter un parametre "beta_vae" (un float) qui ajuste cette force comme :
     
 full_loss = loss + kl_div * beta_vae avec e.g. beta_vae=0.1 -> marche mieux et il faut aussi regler beta_vae avec différentes valeurs
 
@@ -26,7 +26,7 @@ Ex :
 self.conv12 = nn.Sequential(nn.Conv2d(nin, 64, kernel_size=4, stride=2, padding=1),nn.BatchNorm2d(64))
 z = F.relu(self.conv12(z))
 
-Dans le doc, BatchNorm2d prend la taille de channel output du layer d'avant et pour les Linear, on peut ajouter BatchNorm1d, on peut mettre dans un Sequential là car les normalizations ne changent pas la dimension ! donc les print que tu as fais pour t'assurer de la taille de sortie de chaque couche (c'est bien ça !) restent valables
+Dans le doc, BatchNorm2d prend la taille de channel output du layer d'avant et pour les Linear, on peut ajouter BatchNorm1d, on peut mettre dans un Sequential là car les normalizations ne changent pas la dimension ! donc les print que tu as fait pour t'assurer de la taille de sortie de chaque couche (c'est bien ça !) restent valables
 
 On peut ajouter la normalization aux layer convolution et linéraire (mais pas ceux d'output pour mu et sigma ! mais pas celui d'output pour la reconstruction !)
 
