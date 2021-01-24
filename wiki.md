@@ -1,10 +1,12 @@
+Quelques remarques et réflexions faites au cours du projet :
+
 #1 On ne doit pas utiliser une relu sur mu, il peut être positif et négatif (comme les valeurs d'une gaussienne centrée en zéro) :
 
 Ex:
 mu = F.relu(self.fc1(encoder)) -> Faux
 mu = self.fc1(encoder) -> Correct
 
-#2 La sortie d'encoder que on appelle sigma est en fait une log variance, c'est pour ça que'on fait sigma.exp() d'ailleurs c'est bien car c'est plus stable que directement output la variance par contre une log variance peut être négative c'est contraire à :
+#2 La sortie d'encoder que l'on appelle sigma est en fait une log variance, c'est pour cela que l'on fait sigma.exp() d'ailleurs c'est bien car c'est plus stable que directement output la variance par contre une log variance peut être négative c'est contraire à :
 
 Ex:
 sigma = F.softplus(self.fc2(encoder)) -> Faux
@@ -16,7 +18,7 @@ sigma = self.fc2(encoder) -> Correct
 full_loss = loss + kl_div * beta_vae avec e.g. beta_vae=0.1 -> marche mieux et il faut aussi regler beta_vae avec différentes valeurs
 
 
-#4 Pour un réseau à la taille de vecteur d'activation comme self.flat = nn.Flatten() # 12877 -> 6272, le gradient peut faire un peu nimp, un layer que il nous conseille d'utiliser la batchnorm, qui permet d'ajuster la variance des tes activations et faire un gradient plus  homogène, il y a plein d'activations, pour l'instant la batchnorm en général ça devrait que vous faciliter la tache (pour des problèmes plus compliqué, c'est pas toujours ça à utiliser !)
+#4 Pour un réseau à la taille de vecteur d'activation comme self.flat = nn.Flatten() # 12877 -> 6272, on peut utiliser une batchnorm pour réduire la variance des activations et avoir un gradient plus homogène, il y a plein d'activations, pour l'instant la batchnorm en général devrait nous faciliter la tache (pour des problèmes plus compliqué, c'est pas toujours ça à utiliser !)
 
 En règle général on peut faire les couches cachées comme layer + normalisation + activation :
 
